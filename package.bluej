@@ -1,5 +1,5 @@
 #BlueJ package file
-dependency1.from=Application
+dependency1.from=Main
 dependency1.to=FrameRegulator
 dependency1.type=UsesDependency
 objectbench.height=76
@@ -35,7 +35,7 @@ target2.editor.width=1296
 target2.editor.x=-8
 target2.editor.y=-8
 target2.height=190
-target2.name=Application
+target2.name=Main
 target2.naviview.expanded=true
 target2.showInterface=false
 target2.type=ClassTarget

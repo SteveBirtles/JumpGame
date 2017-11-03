@@ -22,7 +22,7 @@ public class FrameRegulator
             Long total = 0L;
             for(Long x : frameLengths) total += Math.round(1000.0 / x);
             Long fps = total / frameLengths.size();
-            gc.strokeText("Frame " + frameCounter.toString() + " | " + fps.toString() + " FPS", 770, 20);
+            gc.strokeText("Frame " + frameCounter.toString() + " | " + fps.toString() + " FPS", 1020, 20);
         }
         tick = tock;
     }

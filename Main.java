@@ -1,27 +1,27 @@
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.event.EventHandler;
-import javafx.stage.WindowEvent;
-import javafx.scene.*;
-import javafx.scene.text.*;
-import javafx.scene.input.*;
-import javafx.scene.paint.*;
-import javafx.scene.image.*;
-import javafx.scene.canvas.*; 
-import javafx.scene.effect.*;
-import javafx.animation.AnimationTimer; 
-import java.util.Set;
+
 import java.util.HashSet;
 import java.util.Random;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.Media;
+import java.util.Set;
 
-public class Application
-{
+public class Main extends Application {
 
-    public static final int WINDOW_WIDTH = 1024;
-    public static final int WINDOW_HEIGHT = 768;
+
+    public static final int WINDOW_WIDTH = 1280;
+    public static final int WINDOW_HEIGHT = 1024;
 
     static Set<KeyCode> keysPressed = new HashSet<>();
 
@@ -36,12 +36,10 @@ public class Application
     private static int noOfBullets = 0;
     private static double countdown = 1;
 
-    private static int highScore = 0;    
+    private static int highScore = 0;
 
-    public static void main(String args[])
-    {       
-        JFXPanel panel = new JFXPanel();        
-        Platform.runLater(() -> start());               
+    public static void main(String[] args) {
+        launch(args);
     }
 
     private static void restart() {
@@ -56,13 +54,14 @@ public class Application
 
     }
 
-    private static void start() 
-    {
+    @Override
+    public void start(Stage primaryStage) throws Exception{
         try
-        {         
-            System.out.println("Application Starting...");
+        {
 
-            MediaPlayer mp = new MediaPlayer(new Media(Application.class.getResource("epic.mp3").toString()));
+            System.out.println("Main Starting...");
+
+            MediaPlayer mp = new MediaPlayer(new Media(Main.class.getResource("epic.mp3").toString()));
             mp.play();
 
             FrameRegulator fr = new FrameRegulator();
@@ -75,13 +74,12 @@ public class Application
 
             stage.setTitle("JavaFX Canvas Demo");
             stage.setResizable(false);
+            stage.setFullScreen(true);
             stage.setScene(scene);                        
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                    public void handle(WindowEvent we) {
-                        System.out.println("Close button was clicked!");
-                        Application.terminate();
-                    }
-                });
+            stage.setOnCloseRequest(we -> {
+                System.out.println("Close button was clicked!");
+                Main.terminate();
+            });
             stage.show(); 
             stage.setWidth(WINDOW_WIDTH);
             stage.setHeight(WINDOW_HEIGHT);
@@ -116,7 +114,7 @@ public class Application
 
                     for(KeyCode k : keysPressed)
                     {
-                        if (k == KeyCode.ESCAPE) Application.terminate();                        
+                        if (k == KeyCode.ESCAPE) Main.terminate();
 
                         if (k == KeyCode.D) 
                         {   
@@ -204,7 +202,7 @@ public class Application
 
     public static void terminate()
     {
-        System.out.println("Terminating Application...");
+        System.out.println("Terminating Main...");
         System.exit(0);
     }
 

@@ -7,8 +7,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -60,9 +58,6 @@ public class Main extends Application {
         {
 
             System.out.println("Main Starting...");
-
-            MediaPlayer mp = new MediaPlayer(new Media(Main.class.getResource("epic.mp3").toString()));
-            mp.play();
 
             FrameRegulator fr = new FrameRegulator();
             Random rnd = new Random(System.currentTimeMillis());
